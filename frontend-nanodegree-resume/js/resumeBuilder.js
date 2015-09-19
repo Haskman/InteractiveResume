@@ -4,10 +4,10 @@ var bio = {
     "role": "Front-End Apprentice",
     "contacts":
         {
-            "email": "usahin668@gmail.com",
+            "email": "vshane668@gmail.com",
             "phone": "(478)-444-8418",
             "github": "github.com/Haskman",
-            "location": "269 Mansuroglu Mah. Izmir, Turkey"
+            "location": "Bayrakli, Izmir, Turkey"
         },
     "message": "Here is my online resume!",
     "skills": ["HTML+CSS",
@@ -25,7 +25,7 @@ var work = {
         "department": "Office of Finance and Accounting",
         "date_started": "July 2015",
         "date_ended": "August 2015",
-        "location": "1000 Town Point Drive, Kennesaw, GA",
+        "location": "Kennesaw, GA",
         "description": "Document processing, clerical tasks, front desk"
     }],
 
@@ -54,7 +54,7 @@ var education = {
                 "date_started": "Aug 2014",
                 "date_finished": "Present",
                 "major": "Computer Science",
-                "city": "Kennesaw State University, Kennesaw, GA",
+                "city": "Kennesaw, GA",
                 "url": "http://www.kennesaw.edu"
             }
         ],
@@ -72,13 +72,6 @@ var education = {
         "date_finished": "Present",
         "url": "https://www.coursera.org/specializations/jhudatascience"
         },
-        {
-        "name": "World War II",
-        "school": "Allies vs Axis vs Comintern",
-        "date_started": "September 1939",
-        "date_finished": "September 1945",
-        "url": "https://wikipedia.org"
-        }
     ]
 }
 
@@ -171,30 +164,40 @@ education.display = function(){
     }
 }
 
+bio.display = function(){
+    var formattedName = HTMLheaderName.replace("%data%", bio.name);
+    var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+    var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+    var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+
+    $("#header").prepend(formattedRole);
+    $("#header").prepend(formattedName);
+
+
+    if (bio.skills.length > 0) {
+        $("#header").append(HTMLskillsStart);
+
+        for (skill in bio.skills) {
+            var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+            $("#skills").append(formattedSkill);
+        }
+    }
+
+    $("#header").append(formattedEmail + formattedLocation + formattedGithub);
+    $("#lets-connect").append(formattedEmail + formattedLocation + formattedGithub)
+}
+
 
 //Functional Code
 
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-
-
-if (bio.skills.length > 0) {
-    $("#header").append(HTMLskillsStart);
-
-    for (skill in bio.skills) {
-        var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-        $("#skills").append(formattedSkill);
-    }
-}
 
 $("#main").append(work.position);
 $("#main").append(education.schools);
 $("#mapDiv").append(googleMap);
 
+bio.display();
 education.display();
 work.display();
 projects.display();
