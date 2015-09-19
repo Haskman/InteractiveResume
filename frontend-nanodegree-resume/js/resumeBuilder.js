@@ -36,7 +36,7 @@ var projects = {
     "projects": [
         {
             "title": "Neurish",
-            "description": "A location-based social media app for epilepsy patients to allow them to connect to other epilepsy" +
+            "description": "A location-based social media app for epilepsy patients to allow them to connect with other epilepsy" +
             " patients as well as mentors and healthcare providers.",
             "date_started": "April 2015",
             "date_finished": "Present",
